@@ -13,11 +13,11 @@ class Order extends DB_business {
     }
 
     public function getAll(){
-        return $this->get_list("SELECT `bills`.*,`orderstatus`.`Name` as 'Status' FROM `bills`,`orderstatus` WHERE `bills`.`Status` = `orderstatus`.`ID` AND `orderstatus`.`ID` NOT IN (6,7) ")??[];
+        return $this->get_list("SELECT `bills`.*,`orderstatus`.`Name`, as 'Status',`orderstatus`.`ID` as 'orID' FROM `bills`,`orderstatus` WHERE `bills`.`Status` = `orderstatus`.`ID` AND `orderstatus`.`ID` NOT IN (6,7) ")??[];
     }
 
     public function getBillByIDStore($IDStore){
-        return $this->get_list("SELECT `bills`.*,`orderstatus`.`Name` as 'Status' FROM `bills`,`orderstatus` WHERE `bills`.`Status` = `orderstatus`.`ID` AND `bills`.`IDStore` = {$IDStore} AND `orderstatus`.`ID` NOT IN (6,7)")??[];
+        return $this->get_list("SELECT `bills`.*,`orderstatus`.`Name` as 'Status', `orderstatus`.`ID` as 'orID' FROM `bills`,`orderstatus` WHERE `bills`.`Status` = `orderstatus`.`ID` AND `bills`.`IDStore` = {$IDStore} AND `orderstatus`.`ID` NOT IN (6,7)")??[];
     }
 
     public function getBillByID($ID){

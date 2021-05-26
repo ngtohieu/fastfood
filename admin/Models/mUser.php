@@ -13,7 +13,7 @@ class User extends DB_business {
     }
 
     public function getUserAll(){
-        return $this->get_list("SELECT `users`.*,`roles`.RoleName FROM `users`,`roles` WHERE `users`.`role` = `roles`.`ID` AND `users`.`IsDelete` = 0");
+        return $this->get_list("SELECT `users`.*,`roles`.RoleName,`roles`.ID as 'IDROLE' FROM `users`,`roles` WHERE `users`.`role` = `roles`.`ID` AND `users`.`IsDelete` = 0");
     }
 
     public function getUser($id){
@@ -25,7 +25,7 @@ class User extends DB_business {
     }
 
     public function getAllStore(){
-        return $this->get_list("SELECT * FROM `stores`")??[];
+        return $this->get_list("SELECT * FROM `stores` WHERE `IsDelete` = 0")??[];
     }
 
     public function insertUser($userName,$name,$password,$IDRole,$IDStore){

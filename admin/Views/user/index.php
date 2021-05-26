@@ -6,9 +6,11 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Danh sách tài khoản</h4>
+                    <?php if($_SESSION['user']['Role']==1){ ?>
                     <a href="./user/them">
                         <i class="now-ui-icons ui-1_simple-add"></i> Thêm tài khoản
                     </a><br/>
+                    <?php } ?>
                     <i style="color: red;">
                         <?php echo $message??""; ?>
                     </i>
@@ -57,8 +59,11 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 <!-- Dropdown menu links -->
+                                                <?php if($_SESSION['user']['Role']==1){ ?>
                                                 <a href="./user/sua/<?php echo $value['ID']; ?>" style="color: black;"><button class="dropdown-item"type="button">Sửa</button></a>
+
                                                 <a href="./user/xoa/<?php echo $value['ID']; ?>" style="color: black;"><button class="dropdown-item" href="#" type="button">Xóa</button></a>
+                                                <?php } ?>
                                             </div>
                                         </div>
                                     </td>

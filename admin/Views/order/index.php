@@ -40,8 +40,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            <?php
+                                $permission = array();
+                                $permission["1"] = [1,2,4];
+                                $permission["2"] = [1,2,4,3];
+                                $permission["3"] = [1,2,4];
+                                $permission["4"] = [1,2,5,3];
+                                $permission["5"] = [1,2,5];
+                                $permission["6"] = [1,2,3];
+                                $permission["7"] = [1,2,4];
+                            ?>
                             <?php foreach($allOrder as $key=>$value){ ?>
-                                <tr>
+                                <tr style="">
                                     <td>
                                         <?php echo $key+1; ?>
                                     </td>
@@ -65,13 +75,36 @@
                                             <div class="dropdown-menu">
                                                 <!-- Dropdown menu links -->
                                                 <a style="color: black;" href="./chitiethoadon/<?php echo $value["ID"]; ?>"><button class="dropdown-item" type="button">Chi tiết</button></a>
-                                                <?php foreach($allStatus as $valuestatus){ ?>
-                                                    <a href="./hoadon/trangthai/<?php echo $value['ID']."/".$valuestatus['ID']; ?>" style="color: black;"><button class="dropdown-item" href="#" type="button"><?php echo $valuestatus['Name']; ?></button></a>
-                                                <?php } ?>
+                                                <?php foreach($allStatus as $valuestatus){ 
+                                                    if(($valuestatus['ID']== 7 && !in_array($_SESSION['user']['Role'],[1,2])))
+                                                        continue;
+                                                    if(in_array($_SESSION['user']['Role'],$permission[$valuestatus['ID']])){
+                                                        if($value['orID'] >= $valuestatus['ID']){
+                                                    ?>
+                                                        <a href="./hoadon/trangthai/<?php echo $value['ID']."/".$valuestatus['ID']; ?>" style="color: black;display:none;"><button class="dropdown-item" href="#" type="button"><?php echo $valuestatus['Name']; ?></button></a>
+                                                    <?php 
+                                                        }else{
+                                                    ?>
+                                                        <a href="./hoadon/trangthai/<?php echo $value['ID']."/".$valuestatus['ID']; ?>" style="color: black;"><button class="dropdown-item" href="#" type="button"><?php echo $valuestatus['Name']; ?></button></a>
+                                                    <?php
+                                                        }
+                                                    }
+                                                } ?>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>                               
+                                <?php } ?>
+                                <?php if(count($allOrder)<4){ ?>
+                                <tr><td style="border: 0px;"></td></tr>
+                                <tr><td style="border: 0px;"></td></tr>
+                                <tr><td style="border: 0px;"></td></tr>
+                                <tr><td style="border: 0px;"></td></tr>
+                                <tr><td style="border: 0px;"></td></tr>
+                                <tr><td style="border: 0px;"></td></tr>
+                                <tr><td style="border: 0px;"></td></tr>
+                                <tr><td style="border: 0px;"></td></tr>
+                                <tr><td style="border: 0px;"></td></tr>
                                 <?php } ?>
                             </tbody>
                         </table>
