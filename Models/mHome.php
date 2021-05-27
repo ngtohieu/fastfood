@@ -20,7 +20,7 @@ class Home extends DB_business
     }
 
     public function getTop8(){
-        return $this->get_list("SELECT pr.*,ca.Url FROM `products` as pr,category as ca WHERE ca.`ID` = pr.`IDCategory` AND pr.`IsShow` = 0 AND pr.`IsDelete` = 0 AND ca.`IsDelete` = 0 AND ca.`IsShow`=0 ORDER BY pr.`ID` DESC LIMIT 8");
+        return $this->get_list("SELECT pr.*,ca.Url FROM `products` as pr,category as ca WHERE ca.`ID` = pr.`IDCategory` AND pr.`IsShow` = 0 AND pr.`IsDelete` = 0 AND ca.`IsDelete` = 0 AND ca.`IsShow`=0 ORDER BY pr.`ID` DESC LIMIT 20");
     }
 
     public function getProductByCategory($IDCategory){
@@ -32,7 +32,7 @@ class Home extends DB_business
     }
 
     public function getCategoryTop8(){
-        return $this->get_list("SELECT DISTINCT ca.Name,ca.Url FROM `products` as pr,category as ca WHERE ca.`ID` = pr.`IDCategory` AND pr.`IsShow` = 0 AND pr.`IsDelete` = 0 AND ca.`IsDelete` = 0 AND ca.`IsShow`=0 ORDER BY pr.`ID` DESC LIMIT 8");
+        return $this->get_list("SELECT DISTINCT ca.Name,ca.Url FROM `products` as pr,category as ca WHERE ca.`ID` = pr.`IDCategory` AND pr.`IsShow` = 0 AND pr.`IsDelete` = 0 AND ca.`IsDelete` = 0 AND ca.`IsShow`=0 ORDER BY pr.`ID` DESC LIMIT 20");
     }
 }
 $home = new Home();

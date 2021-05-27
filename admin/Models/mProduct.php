@@ -21,7 +21,7 @@ class Product extends DB_business {
     }
 
     public function getAllCategory(){
-        return $this->get_list("SELECT `category`.`ID`,`category`.`Name` FROM `category`");
+        return $this->get_list("SELECT `category`.`ID`,`category`.`Name` FROM `category` WHERE `IsDelete` = 0");
     }
 
     public function insertProduct($name,$price,$image,$category){
