@@ -69,6 +69,7 @@
                                                 Chức năng
                                             </button>
                                             <div class="dropdown-menu">
+                                            <?php if($_SESSION['user']['Role'] == 1){ ?>
                                                 <!-- Dropdown menu links -->
                                                 <?php
                                                     if($value['IsShow']==0){
@@ -81,6 +82,7 @@
                                                 <?php } ?>
                                                 <a href="./sanpham/sua/<?php echo $value['ID']; ?>" style="color:black;"><button class="dropdown-item" href="#" type="button">Sửa</button></a>
                                                 <a href="./sanpham/xoa/<?php echo $value['ID']; ?>" style="color:black;"><button class="dropdown-item" href="#" type="button">Xóa</button></a>
+                                                <?php } ?>
                                             </div>
                                         </div>
                                     </td>
